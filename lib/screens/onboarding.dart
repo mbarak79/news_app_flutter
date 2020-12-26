@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
 
-main() {
-  runApp(OnBoarding());
-}
-
 class OnBoarding extends StatefulWidget {
+  OnBoarding({Key key}) : super(key: key);
+
   @override
   _OnBoardingState createState() => _OnBoardingState();
 }
 
 class _OnBoardingState extends State<OnBoarding> {
+  List<String> images = [
+    'assets/images/bg2.jpg',
+    'assets/images/bg3.jpg',
+    'assets/images/bg4.jpg',
+    'assets/images/bg5.jpg',
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,63 +27,66 @@ class _OnBoardingState extends State<OnBoarding> {
                   Container(
                     decoration: BoxDecoration(
                         image: DecorationImage(
-                            image: ExactAssetImage('assets/images/bg.jpg'),
-                            fit: BoxFit.cover)),
-                  ),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Transform.translate(
-                        child: Icon(
-                          Icons.new_releases,
-                          size: 100,
-                          color: Colors.white,
-                        ),
-                        offset: Offset(0, -50),
+                      image: ExactAssetImage(
+                        images[index],
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 48.0),
-                        child: Text(
-                          "Welcome",
-                          style: TextStyle(
-                              color: Colors.grey,
-                              fontSize: 28,
-                              fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(
-                            top: 28.0, left: 48.0, right: 48.0),
-                        child: Text(
-                          "This project is a starting point for a Flutter application.",
-                          style: TextStyle(color: Colors.white, fontSize: 18),
-                          textAlign: TextAlign.center,
-                        ),
-                      ),
-                    ],
+                      fit: BoxFit.cover,
+                    )),
                   )
                 ],
               );
             },
-            itemCount: 4,
+            itemCount: images.length,
           ),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: Padding(
-              padding: EdgeInsets.only(bottom: 24),
-              child: RaisedButton(
-                color: Colors.red.shade800,
-                child: Text(
-                  'GET STARTED',
+          Padding(
+            padding: const EdgeInsets.only(top: 200.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text(
+                  "Welcome",
                   style: TextStyle(
-                    fontSize: 18,
-                  ),
+                      fontSize: 28,
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: 4),
                 ),
-                onPressed: () {},
-              ),
+                SizedBox(
+                  height: 28,
+                ),
+                Padding(
+                  padding:
+                      const EdgeInsets.only(top: 30, left: 78.0, right: 18),
+                  child: Text(
+                    "This project is a starting point for a Flutter application.",
+                    style: TextStyle(
+                        fontSize: 20,
+                        letterSpacing: 2,
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold),
+                  ),
+                )
+              ],
             ),
           ),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 28.0, left: 16, right: 16),
+            child: Align(
+                alignment: Alignment.bottomCenter,
+                child: SizedBox(
+                  width: double.infinity,
+                  height: 50,
+                  child: RaisedButton(
+                    color: Colors.redAccent,
+                    child: Text(
+                      'GET STARTED',
+                      style: TextStyle(
+                          color: Colors.white, fontSize: 18, letterSpacing: 2),
+                    ),
+                    onPressed: () {},
+                  ),
+                )),
+          )
         ],
       ),
     );
